@@ -1,0 +1,7 @@
+if(TARGET tinyxml2)
+  set(TinyXML2_FOUND TRUE)
+  set(TINYXML2_FOUND TRUE)
+  set(TINYXML2_LIBRARY tinyxml2)
+  set(TinyXML2_LIBRARIES tinyxml2)
+  set(TinyXML2_INCLUDE_DIRS "${CMAKE_CURRENT_LIST_DIR}/../third_party/tinyxml2")
+endif()

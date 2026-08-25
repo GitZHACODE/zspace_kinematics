@@ -1,0 +1,5 @@
+if(TARGET Eigen3::Eigen)
+  set(Eigen3_FOUND TRUE)
+  set(EIGEN3_FOUND TRUE)
+  set(EIGEN3_INCLUDE_DIR "${CMAKE_CURRENT_LIST_DIR}/../third_party/eigen")
+endif()

@@ -1,0 +1,25 @@
+# CMake build trees
+/build/
+/build-*/
+/out/
+/CMakeCache.txt
+/CMakeFiles/
+/cmake_install.cmake
+/install_manifest.txt
+
+# IDE and compiler output
+/.vs/
+*.user
+*.suo
+*.VC.db
+*.VC.opendb
+*.pdb
+*.ilk
+*.obj
+*.lib
+*.exp
+*.exe
+*.dll
+
+# Test output
+/Testing/
