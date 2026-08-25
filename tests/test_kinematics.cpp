@@ -1,4 +1,4 @@
-#include "abb_kinematics/robot_kinematics.hpp"
+#include "zKinematics/robot_kinematics.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -11,9 +11,9 @@
 
 namespace {
 
-using abb_kinematics::JointVector;
-using abb_kinematics::Pose;
-using abb_kinematics::RobotKinematics;
+using zKinematics::JointVector;
+using zKinematics::Pose;
+using zKinematics::RobotKinematics;
 
 void require(bool condition, const std::string &message) {
   if (!condition)
@@ -51,12 +51,12 @@ void requireThrows(const std::function<void()> &operation) {
 }
 
 RobotKinematics loadRobot() {
-  return RobotKinematics(ABB_KINEMATICS_TEST_URDF, "base_link", "tool0");
+  return RobotKinematics(ZKINEMATICS_TEST_URDF, "base_link", "tool0");
 }
 
-abb_kinematics::IKOptions kdlOptions() {
-  abb_kinematics::IKOptions options;
-  options.backend = abb_kinematics::IKBackend::KDL;
+zKinematics::IKOptions kdlOptions() {
+  zKinematics::IKOptions options;
+  options.backend = zKinematics::IKBackend::KDL;
   options.max_iterations = 1000;
   options.tolerance = 1e-6;
   return options;

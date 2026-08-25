@@ -29,13 +29,13 @@ if not exist "%NINJA%" if not "%NINJA%"=="ninja" (
   exit /b 1
 )
 
-cmake -G Ninja -S "%ROOT%" -B "%BUILD_DIR%" ^
+cmake -G "Ninja Multi-Config" -S "%ROOT%" -B "%BUILD_DIR%" ^
   -DCMAKE_CXX_COMPILER=clang++ ^
   -DCMAKE_MAKE_PROGRAM="%NINJA%"
 if errorlevel 1 exit /b %errorlevel%
 
-cmake --build "%BUILD_DIR%" --parallel
+cmake --build "%BUILD_DIR%" --config Release --parallel
 if errorlevel 1 exit /b %errorlevel%
 
-ctest --test-dir "%BUILD_DIR%" --output-on-failure
+ctest --test-dir "%BUILD_DIR%" -C Release --output-on-failure
 exit /b %errorlevel%

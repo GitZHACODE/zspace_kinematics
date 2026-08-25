@@ -1,4 +1,4 @@
-#include "abb_kinematics/robot_kinematics.hpp"
+#include "zKinematics/robot_kinematics.hpp"
 
 #include <kdl/chain.hpp>
 #include <kdl/chainfksolverpos_recursive.hpp>
@@ -9,7 +9,7 @@
 #include <kdl_parser/kdl_parser.hpp>
 #include <urdf/model.hpp>
 
-#ifdef ABB_KINEMATICS_HAS_TRAC_IK
+#ifdef ZKINEMATICS_HAS_TRAC_IK
 #include <trac_ik/trac_ik.hpp>
 #endif
 
@@ -21,7 +21,7 @@
 #include <stdexcept>
 #include <utility>
 
-namespace abb_kinematics {
+namespace zKinematics {
 namespace {
 
 constexpr double kQuaternionEpsilon = 1e-12;
@@ -287,7 +287,7 @@ IKResult RobotKinematics::ik(const Pose &target_tcp, const JointVector &seed,
         velocity_solver, options.max_iterations, options.tolerance);
     rc = position_solver.CartToJnt(toKdlJoints(seed), target_flange, output);
   } else {
-#ifdef ABB_KINEMATICS_HAS_TRAC_IK
+#ifdef ZKINEMATICS_HAS_TRAC_IK
     TRAC_IK::TRAC_IK solver(impl_->chain, impl_->lower_kdl, impl_->upper_kdl,
                             options.timeout_seconds, options.tolerance,
                             TRAC_IK::Distance);
@@ -334,4 +334,4 @@ IKResult RobotKinematics::ik(const Pose &target_tcp, const JointVector &seed,
   return {true, std::move(solution), rc, "IK solution found"};
 }
 
-} // namespace abb_kinematics
+}  // namespace zKinematics

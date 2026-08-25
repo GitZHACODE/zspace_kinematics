@@ -1,4 +1,4 @@
-# abb_kinematics
+# zKinematics
 
 A small, standalone C++17 library for serial-robot forward and inverse kinematics.
 It is aimed at ABB-style six-axis industrial arms, but operates on any serial KDL chain.
@@ -23,7 +23,7 @@ console_bridge, and TinyXML2. The KDL parser is compiled directly from its upstr
 source with a tiny compatibility layer for URDFDOM and diagnostics; it has no ROS
 runtime dependency.
 
-Set `ABB_KINEMATICS_USE_VENDORED_DEPS=OFF` to instead use installed Orocos KDL and
+Set `ZKINEMATICS_USE_VENDORED_DEPS=OFF` to instead use installed Orocos KDL and
 `kdl_parser` packages. On Ubuntu with ROS 2, install the matching distribution
 packages, for example:
 
@@ -31,10 +31,32 @@ packages, for example:
 sudo apt install liborocos-kdl-dev ros-${ROS_DISTRO}-kdl-parser ros-${ROS_DISTRO}-urdf
 ```
 
-TRAC-IK is optional. Its upstream source is also cloned under `third_party/`, but this
-checkout does not enable it unless a compatible standalone TRAC-IK package (including
-Boost and NLopt) is installed and found by CMake. Otherwise KDL's joint-limited
-Newton-Raphson solver is used. Typical ROS 2 installation:
+TRAC-IK is optional. Its upstream source is cloned under `third_party/` and is built
+directly, without ROS or catkin, when NLopt and Boost Date-Time are available.
+Otherwise KDL's joint-limited Newton-Raphson solver is used.
+
+### Windows: enable TRAC-IK with vcpkg
+
+Install vcpkg and the x64 dependencies:
+
+```powershell
+git clone https://github.com/microsoft/vcpkg C:\dev\vcpkg
+C:\dev\vcpkg\bootstrap-vcpkg.bat
+C:\dev\vcpkg\vcpkg.exe install nlopt:x64-windows boost-date-time:x64-windows
+```
+
+The default CMake value for `ZKINEMATICS_VCPKG_INSTALLED_DIR` is
+`C:/dev/vcpkg/installed/x64-windows`. Override it when vcpkg is installed elsewhere:
+
+```powershell
+cmake -S . -B build -DZKINEMATICS_VCPKG_INSTALLED_DIR=C:/path/to/vcpkg/installed/x64-windows
+```
+
+Configuration prints `TRAC-IK found: enabling TRAC-IK backend` when support is active.
+The generated `zKinematics.dll` imports `nlopt.dll`; copy both DLLs beside the consuming
+executable. The build copies `nlopt.dll` into `build/Release/` automatically.
+
+For a ROS 2 environment, the packaged alternative is:
 
 ```bash
 sudo apt install ros-${ROS_DISTRO}-trac-ik-lib
@@ -68,6 +90,12 @@ ctest --preset clang-debug
 
 Use `clang-release` for an optimised build. Preset build trees are written below
 `out/build/`.
+
+By default, `zKinematics` is a shared library. A Visual Studio Release build
+places `zKinematics.dll` and its import library (`zKinematics.lib`) in
+`build/Release/`, ready for consumers that link and copy from that location. Use
+`-DZKINEMATICS_BUILD_SHARED=OFF` to produce a static library instead. The public
+`RobotKinematics` class has the required Windows import/export annotation.
 
 ## Example
 

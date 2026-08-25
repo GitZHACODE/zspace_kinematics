@@ -21,5 +21,8 @@
 *.exe
 *.dll
 
+/models/
+/third_party/
+
 # Test output
 /Testing/

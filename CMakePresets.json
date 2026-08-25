@@ -30,6 +30,22 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release"
       }
+    },
+    {
+      "name": "clang-debug-shared",
+      "displayName": "Clang Debug (DLL)",
+      "inherits": "clang-debug",
+      "cacheVariables": {
+        "ZKINEMATICS_BUILD_SHARED": "ON"
+      }
+    },
+    {
+      "name": "clang-release-shared",
+      "displayName": "Clang Release (DLL)",
+      "inherits": "clang-release",
+      "cacheVariables": {
+        "ZKINEMATICS_BUILD_SHARED": "ON"
+      }
     }
   ],
   "buildPresets": [
@@ -40,6 +56,14 @@
     {
       "name": "clang-release",
       "configurePreset": "clang-release"
+    },
+    {
+      "name": "clang-debug-shared",
+      "configurePreset": "clang-debug-shared"
+    },
+    {
+      "name": "clang-release-shared",
+      "configurePreset": "clang-release-shared"
     }
   ],
   "testPresets": [
@@ -53,6 +77,20 @@
     {
       "name": "clang-release",
       "configurePreset": "clang-release",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "clang-debug-shared",
+      "configurePreset": "clang-debug-shared",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "clang-release-shared",
+      "configurePreset": "clang-release-shared",
       "output": {
         "outputOnFailure": true
       }

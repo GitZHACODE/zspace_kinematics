@@ -22,6 +22,10 @@ public:
     return static_cast<bool>(model_);
   }
 
+  bool initString(const std::string &xml) {
+    return initString(xml.c_str());
+  }
+
   JointConstSharedPtr getJoint(const std::string &name) const {
     return model_ ? model_->getJoint(name) : JointConstSharedPtr{};
   }

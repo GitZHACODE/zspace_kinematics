@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-namespace abb_kinematics {
+namespace zKinematics {
 
 using JointVector = std::vector<double>;
 
@@ -32,7 +32,7 @@ struct IKOptions {
   double tolerance = 1e-5;
   // Used by the KDL iterative solver.
   unsigned int max_iterations = 200;
-#ifdef ABB_KINEMATICS_HAS_TRAC_IK
+#ifdef ZKINEMATICS_HAS_TRAC_IK
   IKBackend backend = IKBackend::TRAC_IK;
 #else
   IKBackend backend = IKBackend::KDL;
@@ -47,4 +47,4 @@ struct IKResult {
   std::string message;
 };
 
-} // namespace abb_kinematics
+}  // namespace zKinematics
