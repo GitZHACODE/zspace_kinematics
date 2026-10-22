@@ -17,6 +17,12 @@ no degrees or Euler-angle interfaces.
 
 ## Dependencies
 
+Initialize the pinned dependency submodules after cloning:
+
+```bash
+git submodule update --init --recursive
+```
+
 The default checkout vendors the source needed for the KDL-only build under
 `third_party/`: Orocos KDL, `kdl_parser`, Eigen, URDFDOM, URDFDOM headers,
 console_bridge, and TinyXML2. The KDL parser is compiled directly from its upstream

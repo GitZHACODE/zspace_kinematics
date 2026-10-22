@@ -8,6 +8,8 @@ alongside them: Eigen, URDFDOM, URDFDOM headers, console_bridge, and TinyXML2.
 upstream ROS-packaged KDL parser use URDFDOM directly and emit diagnostics without a
 ROS runtime.
 
-TRAC-IK is cloned for optional use, but its upstream checkout currently requires its
-own Boost, NLopt, and ROS/catkin packaging dependencies. It is therefore not enabled
-by default; the KDL joint-limited backend always remains available.
+Initialize all pinned upstream checkouts with `git submodule update --init --recursive`.
+
+TRAC-IK is built directly from its upstream sources when Boost Date-Time and NLopt
+are available, using the compatibility headers without ROS or catkin. Otherwise,
+the KDL joint-limited backend remains available.

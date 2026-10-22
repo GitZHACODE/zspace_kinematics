@@ -1,0 +1,24 @@
+[submodule "third_party/console_bridge"]
+	path = third_party/console_bridge
+	url = https://github.com/ros/console_bridge.git
+[submodule "third_party/eigen"]
+	path = third_party/eigen
+	url = https://gitlab.com/libeigen/eigen.git
+[submodule "third_party/kdl_parser"]
+	path = third_party/kdl_parser
+	url = https://github.com/ros/kdl_parser.git
+[submodule "third_party/orocos_kinematics_dynamics"]
+	path = third_party/orocos_kinematics_dynamics
+	url = https://github.com/orocos/orocos_kinematics_dynamics.git
+[submodule "third_party/tinyxml2"]
+	path = third_party/tinyxml2
+	url = https://github.com/leethomason/tinyxml2.git
+[submodule "third_party/trac_ik"]
+	path = third_party/trac_ik
+	url = https://github.com/HIRO-group/trac_ik.git
+[submodule "third_party/urdfdom"]
+	path = third_party/urdfdom
+	url = https://github.com/ros/urdfdom.git
+[submodule "third_party/urdfdom_headers"]
+	path = third_party/urdfdom_headers
+	url = https://github.com/ros/urdfdom_headers.git
